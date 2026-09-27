@@ -1,0 +1,10 @@
+# Bundle layer of dsh-plugin-chat-presets.
+#
+# One insert row: mount the preset-pack plugin, which registers this package's
+# bundled `presets/` directory as an extra root on the `agentPresets` service at
+# runtime. The plugin resolves its own directory from import.meta.url, so this
+# layer carries no absolute paths and does NOT override the `agent-presets` row
+# (a patch override would replace that row's whole `config`).
+- insert:
+    - id: chat-presets
+      name: 'dsh-plugin-chat-presets'

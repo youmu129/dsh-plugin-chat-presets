@@ -1,0 +1,22 @@
+{
+  "name": "dsh-plugin-chat-presets",
+  "version": "0.1.0",
+  "description": "DSH agent preset pack: ships the chat-web (搜索模式) and pure-chat (纯净模式) presets as an installable bundle, instead of authoring them under $DSH_HOME/.agent-presets.",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "presets/"
+  ],
+  "keywords": [
+    "dsh-plugin",
+    "dsh-agent-presets"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
