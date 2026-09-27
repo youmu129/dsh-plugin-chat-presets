@@ -1,4 +1,4 @@
-# The `pure-chat` agent preset: a bare conversation-only composition.
+# The `pure` agent preset: a bare conversation-only composition.
 #
 # The persona is the complete system prompt, so global identity, Web orientation,
 # tool guidance, and later assembly listeners cannot add prompt text. Runtime

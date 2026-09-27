@@ -1,6 +1,6 @@
 # dsh-plugin-chat-presets
 
-把原先直接放在 `$DSH_HOME/.agent-presets/` 下的两个本地 preset —— **搜索模式**（`chat-web`）与 **纯净模式**（`pure-chat`）—— 打包成一个可安装的 DSH 组合包（bundle），随插件加载、随插件卸载，不再占用用户 preset 目录。
+把原先直接放在 `$DSH_HOME/.agent-presets/` 下的两个本地 preset —— **搜索模式**（`web-search`，原 id `chat-web`）与 **纯净模式**（`pure`，原 id `pure-chat`）—— 打包成一个可安装的 DSH 组合包（bundle），随插件加载、随插件卸载，不再占用用户 preset 目录。
 
 ## 内容
 
@@ -9,8 +9,8 @@
 ├── cordis.patch.yml    # bundle 层：insert 一行挂载本插件
 ├── index.js            # apply()：把 ./presets 注册为 agentPresets 的扫描根目录
 └── presets/            # 每个子目录是一个 preset（目录名即 preset id）
-    ├── chat-web/       # 搜索模式：persona + 仅 web_search 工具
-    └── pure-chat/      # 纯净模式：仅 persona，无工具
+    ├── web-search/     # 搜索模式：persona + 仅 web_search 工具
+    └── pure/           # 纯净模式：仅 persona，无工具
 ```
 
 preset 目录的内容（`agent.cordis.yml` + `preset.yml`）与原 `$DSH_HOME/.agent-presets/` 下的版本逐字一致，preset id 不变，已记录这些 preset 的历史会话照常解析。

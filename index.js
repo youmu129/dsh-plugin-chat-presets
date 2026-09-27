@@ -1,4 +1,4 @@
-// dsh-plugin-chat-presets — ship the `chat-web`（搜索模式）and `pure-chat`（纯净模式）
+// dsh-plugin-chat-presets — ship the `web-search`（搜索模式）and `pure`（纯净模式）
 // agent presets inside an installable bundle instead of `$DSH_HOME/.agent-presets`.
 //
 // Mechanism: the `agentPresets` service derives its root list once per service
