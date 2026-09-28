@@ -1,10 +1,52 @@
 # Bundle layer of dsh-plugin-chat-presets.
 #
-# One insert row: mount the preset-pack plugin, which registers this package's
-# bundled `presets/` directory as an extra root on the `agentPresets` service at
-# runtime. The plugin resolves its own directory from import.meta.url, so this
-# layer carries no absolute paths and does NOT override the `agent-presets` row
-# (a patch override would replace that row's whole `config`).
+# Two `@deepseek-ai/dsh-agent-preset` declarations, one per shipped preset:
+# `web-search`（搜索模式）and `pure`（纯净模式）. Since dsh 0.1.7 the preset
+# registry neither scans directories nor accepts preset paths — a preset IS an
+# ordinary declaration row, and its `config.plugins` is the composition mounted
+# for every Agent selecting it. `config.id` keeps the historical preset ids
+# (`web-search` / `pure`), so sessions recorded under them still resolve.
+#
+# The persona rows are the complete system prompt (`complete: true`) and
+# suppress runtime context snapshots, exactly like the pre-0.1.7
+# `agent.cordis.yml` versions. `web-search` mounts only the web-search tool
+# (`fetch: false`: search-only, no page fetching); `pure` mounts no tools.
+# Row module names resolve through the profile's runtime resolution table,
+# which spans the whole dsh installation scope — this package needs no
+# dependency on `@deepseek-ai/dsh-persona` / `@deepseek-ai/dsh-tool-web`.
 - insert:
-    - id: chat-presets
-      name: 'dsh-plugin-chat-presets'
+    - id: preset-web-search
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: web-search
+        name: 搜索模式
+        description: 基础网页聊天：与普通网页版 AI 聊天一致，仅开放网页搜索能力，不挂载其他工具。
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: >-
+                You are a helpful assistant. You can use the web_search tool to find
+                current or factual information from the web; use it when a question needs
+                up-to-date or factual grounding, and otherwise answer directly and
+                conversationally.
+              complete: true
+              includeRuntimeContext: false
+          - id: tool-web
+            name: '@deepseek-ai/dsh-tool-web'
+            config:
+              fetch: false
+              searchTimeoutMs: 60000
+    - id: preset-pure
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: pure
+        name: 纯净模式
+        description: 仅对话聊天：不挂载任何预设工具，也不注入额外提示词的纯净 Agent。
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: You are a helpful assistant.
+              complete: true
+              includeRuntimeContext: false

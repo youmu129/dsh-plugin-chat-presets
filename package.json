@@ -1,17 +1,14 @@
 {
   "name": "dsh-plugin-chat-presets",
-  "version": "0.1.0",
-  "description": "DSH agent preset pack: ships the web-search (搜索模式) and pure (纯净模式) presets as an installable bundle, instead of authoring them under $DSH_HOME/.agent-presets.",
+  "version": "0.2.0",
+  "description": "DSH agent preset pack: declares the web-search (搜索模式) and pure (纯净模式) presets as @deepseek-ai/dsh-agent-preset rows carried by this bundle patch.",
   "type": "module",
-  "main": "index.js",
   "files": [
-    "index.js",
-    "cordis.patch.yml",
-    "presets/"
+    "cordis.patch.yml"
   ],
   "keywords": [
     "dsh-plugin",
-    "dsh-agent-presets"
+    "dsh-agent-preset"
   ],
   "license": "MIT",
   "dsh": {
