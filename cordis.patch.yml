@@ -10,7 +10,7 @@
 # The persona rows are the complete system prompt (`complete: true`) and
 # suppress runtime context snapshots, exactly like the pre-0.1.7
 # `agent.cordis.yml` versions. `web-search` mounts only the web-search tool
-# (`fetch: false`: search-only, no page fetching); `pure` mounts no tools.
+# (page fetching enabled, `fetch: true`); `pure` mounts no tools.
 # Row module names resolve through the profile's runtime resolution table,
 # which spans the whole dsh installation scope — this package needs no
 # dependency on `@deepseek-ai/dsh-persona` / `@deepseek-ai/dsh-tool-web`.
@@ -20,7 +20,7 @@
       config:
         id: web-search
         name: 搜索模式
-        description: 基础网页聊天：与普通网页版 AI 聊天一致，仅开放网页搜索能力，不挂载其他工具。
+        description: 基础网页聊天：与普通网页版 AI 聊天一致，开放网页搜索与网页读取能力，不挂载其他工具。
         plugins:
           - id: persona
             name: '@deepseek-ai/dsh-persona'
@@ -35,7 +35,7 @@
           - id: tool-web
             name: '@deepseek-ai/dsh-tool-web'
             config:
-              fetch: false
+              fetch: true
               searchTimeoutMs: 60000
     - id: preset-pure
       name: '@deepseek-ai/dsh-agent-preset'
