@@ -1,7 +1,7 @@
 {
   "name": "dsh-plugin-chat-presets",
   "version": "0.2.0",
-  "description": "DSH agent preset pack: declares the web-search (搜索模式) and pure (纯净模式) presets as @deepseek-ai/dsh-agent-preset rows carried by this bundle patch.",
+  "description": "DSH 插件：提供「搜索模式」「纯净模式」两个会话预设。",
   "type": "module",
   "files": [
     "cordis.patch.yml"
